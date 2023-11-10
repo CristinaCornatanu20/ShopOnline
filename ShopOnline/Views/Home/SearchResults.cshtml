@@ -1,0 +1,20 @@
+﻿@model IEnumerable<ShopOnline.Models.DBObjects.Product>
+
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<h1>Search Results</h1>
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-sm-2">
+            <!-- Afișează informațiile despre produs -->
+            <p>@product.Name</p>
+            <p>@product.Price</p>
+            <p>@product.Image</p>
+            <!-- Adaugă alte detalii despre produs -->
+        </div>
+    }
+</div>
