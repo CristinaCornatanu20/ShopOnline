@@ -4,16 +4,17 @@
     ViewData["Title"] = "Search Results";
 }
 
-<h1 align="center">Search Results</h1>
+<h1>Search Results</h1>
 
 <div class="row">
     @foreach (var product in Model)
     {
         <div class="col-sm-2">
-            <p><img src="@product.Image" alt="@product.Name" width="150" height="130"> </p>
+            <!-- Afișează informațiile despre produs -->
             <p>@product.Name</p>
             <p>@product.Price</p>
-            <a asp-controller="Product" asp-action="Details" asp-route-id="@product.IdProduct" class="btn btn-secondary mb-2">Details</a>
+            <p>@product.Image</p>
+            <!-- Adaugă alte detalii despre produs -->
         </div>
     }
 </div>

@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using ShopOnline.Data;
 using ShopOnline.Models;
-using ShopOnline.Repository;
 using System.Diagnostics;
 
 namespace ShopOnline.Controllers
@@ -11,20 +10,17 @@ namespace ShopOnline.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
-        private readonly ProductRepository repository;
 
 
         public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
             _context=context;
-            repository=new ProductRepository(context);
         }
 
         public IActionResult Index()
         {
-            var products = repository.GetAllProducts();
-            return View(products);
+            return View();
         }
 
         public IActionResult Privacy()
