@@ -10,91 +10,91 @@ using ShopOnline.Models.DBObjects;
 
 namespace ShopOnline.Controllers
 {
-    public class TVAController : Controller
+    public class OrderController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public TVAController(ApplicationDbContext context)
+        public OrderController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: TVA
+        // GET: Order
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Tvas.Include(t => t.IdCategoryNavigation);
+            var applicationDbContext = _context.Orders.Include(o => o.IdUserNavigation);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: TVA/Details/5
+        // GET: Order/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null || _context.Tvas == null)
+            if (id == null || _context.Orders == null)
             {
                 return NotFound();
             }
 
-            var tva = await _context.Tvas
-                .Include(t => t.IdCategoryNavigation)
-                .FirstOrDefaultAsync(m => m.IdTva == id);
-            if (tva == null)
+            var order = await _context.Orders
+                .Include(o => o.IdUserNavigation)
+                .FirstOrDefaultAsync(m => m.IdOrder == id);
+            if (order == null)
             {
                 return NotFound();
             }
 
-            return View(tva);
+            return View(order);
         }
 
-        // GET: TVA/Create
+        // GET: Order/Create
         public IActionResult Create()
         {
-            ViewData["IdCategory"] = new SelectList(_context.Categories, "IdCategory", "IdCategory");
+            ViewData["IdUser"] = new SelectList(_context.Users, "IdUser", "IdUser");
             return View();
         }
 
-        // POST: TVA/Create
+        // POST: Order/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdTva,Tva1,IdCategory")] Tva tva)
+        public async Task<IActionResult> Create([Bind("IdOrder,IdUser,FirstName,LastName,Address,OrderDate")] Order order)
         {
             if (ModelState.IsValid)
             {
-                tva.IdTva = Guid.NewGuid();
-                _context.Add(tva);
+                order.IdOrder = Guid.NewGuid();
+                _context.Add(order);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdCategory"] = new SelectList(_context.Categories, "IdCategory", "IdCategory", tva.IdCategory);
-            return View(tva);
+            ViewData["IdUser"] = new SelectList(_context.Users, "IdUser", "IdUser", order.IdUser);
+            return View(order);
         }
 
-        // GET: TVA/Edit/5
+        // GET: Order/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null || _context.Tvas == null)
+            if (id == null || _context.Orders == null)
             {
                 return NotFound();
             }
 
-            var tva = await _context.Tvas.FindAsync(id);
-            if (tva == null)
+            var order = await _context.Orders.FindAsync(id);
+            if (order == null)
             {
                 return NotFound();
             }
-            ViewData["IdCategory"] = new SelectList(_context.Categories, "IdCategory", "IdCategory", tva.IdCategory);
-            return View(tva);
+            ViewData["IdUser"] = new SelectList(_context.Users, "IdUser", "IdUser", order.IdUser);
+            return View(order);
         }
 
-        // POST: TVA/Edit/5
+        // POST: Order/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("IdTva,Tva1,IdCategory")] Tva tva)
+        public async Task<IActionResult> Edit(Guid id, [Bind("IdOrder,IdUser,FirstName,LastName,Address,OrderDate")] Order order)
         {
-            if (id != tva.IdTva)
+            if (id != order.IdOrder)
             {
                 return NotFound();
             }
@@ -103,12 +103,12 @@ namespace ShopOnline.Controllers
             {
                 try
                 {
-                    _context.Update(tva);
+                    _context.Update(order);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TvaExists(tva.IdTva))
+                    if (!OrderExists(order.IdOrder))
                     {
                         return NotFound();
                     }
@@ -119,51 +119,51 @@ namespace ShopOnline.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdCategory"] = new SelectList(_context.Categories, "IdCategory", "IdCategory", tva.IdCategory);
-            return View(tva);
+            ViewData["IdUser"] = new SelectList(_context.Users, "IdUser", "IdUser", order.IdUser);
+            return View(order);
         }
 
-        // GET: TVA/Delete/5
+        // GET: Order/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null || _context.Tvas == null)
+            if (id == null || _context.Orders == null)
             {
                 return NotFound();
             }
 
-            var tva = await _context.Tvas
-                .Include(t => t.IdCategoryNavigation)
-                .FirstOrDefaultAsync(m => m.IdTva == id);
-            if (tva == null)
+            var order = await _context.Orders
+                .Include(o => o.IdUserNavigation)
+                .FirstOrDefaultAsync(m => m.IdOrder == id);
+            if (order == null)
             {
                 return NotFound();
             }
 
-            return View(tva);
+            return View(order);
         }
 
-        // POST: TVA/Delete/5
+        // POST: Order/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            if (_context.Tvas == null)
+            if (_context.Orders == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Tvas'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Orders'  is null.");
             }
-            var tva = await _context.Tvas.FindAsync(id);
-            if (tva != null)
+            var order = await _context.Orders.FindAsync(id);
+            if (order != null)
             {
-                _context.Tvas.Remove(tva);
+                _context.Orders.Remove(order);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TvaExists(Guid id)
+        private bool OrderExists(Guid id)
         {
-          return (_context.Tvas?.Any(e => e.IdTva == id)).GetValueOrDefault();
+          return (_context.Orders?.Any(e => e.IdOrder == id)).GetValueOrDefault();
         }
     }
 }

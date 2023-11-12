@@ -47,13 +47,13 @@ namespace ShopOnline.Repository
             return MapDbObjectToModel(dbContext.Products.FirstOrDefault(x => x.IdCategory == ID));
 
         }
-        public CategoryModel GetCategoryById(Guid categoryId)
+        public  Category GetCategoryById(Guid categoryId)
         {
             var categoryFromDb = dbContext.Categories.FirstOrDefault(c => c.IdCategory == categoryId);
 
             if (categoryFromDb != null)
             {
-                var categoryModel = new CategoryModel
+                var categoryModel = new Category
                 {
                     // Aici copiezi proprietățile corespunzătoare din categoria din baza de date în categoria model
                     IdCategory = categoryFromDb.IdCategory,

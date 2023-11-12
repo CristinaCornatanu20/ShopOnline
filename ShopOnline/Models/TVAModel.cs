@@ -3,13 +3,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ShopOnline.Models
 {
-    public class TVAmODEL
+    public class TvaModel
     {
         public Guid IdTva { get; set; }
         [Display(Name = "Cota TVA")]
       
-        public decimal? TVA { get; set; }
+        public decimal? Tval { get; set; }
         [ValidateNever]
         public Guid IdCategory { get; set; }
+
+        public virtual CategoryModel IdCategoryNavigation { get; set; } = null!;
     }
 }

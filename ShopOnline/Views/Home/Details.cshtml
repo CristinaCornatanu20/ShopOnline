@@ -1,0 +1,47 @@
+﻿@model ShopOnline.Models.ProductModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="aliniere text-center">
+    <h4 >Detalii despre @Model.Name</h4>
+    <hr />
+    <dl class="row">
+       
+        <dd >
+            <img src="@Model.Image" alt="@Model.Name" width="150" height="130" />
+        </dd>
+        
+        <dt class = "col-sm-9">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-1">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdCategoryNavigation.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdCategoryNavigation.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StockQuantity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StockQuantity)
+        </dd>
+        
+    </dl>
+
+    <a asp-action="Index" class="btn btn-primary" align="center">Back to Products List</a>
+
+</div>

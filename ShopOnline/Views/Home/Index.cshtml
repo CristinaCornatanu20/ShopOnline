@@ -1,8 +1,22 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+    <div class="row" align="center">
+        @foreach (var product in Model)
+        {
+            <div class="col-sm-2">
+                <p><img src="@product.Image" alt="@product.Name" width="150" height="130"> </p>
+                <p>@product.Name</p>
+                <p>@product.Price</p>
+                <a  asp-action="Details" asp-route-id="@product.IdProduct" class="btn btn-secondary mb-2">Details</a>
+            </div>
+        }
+    </div>
 </div>

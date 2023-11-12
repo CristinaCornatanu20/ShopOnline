@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using ShopOnline.Models.DBObjects;
 
 namespace ShopOnline.Models
 {
@@ -28,7 +29,7 @@ namespace ShopOnline.Models
     [ValidateNever]
      public string? Image { get; set; }
 
-        public virtual CategoryModel IdCategoryNavigation { get; set; } = null!;
+        public virtual Category IdCategoryNavigation { get; set; } = null!;
     }
 }
 
