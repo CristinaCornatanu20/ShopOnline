@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using ShopOnline.Models.DBObjects;
 using System.ComponentModel.DataAnnotations;
 
 namespace ShopOnline.Models
@@ -12,6 +13,6 @@ namespace ShopOnline.Models
         [ValidateNever]
         public Guid IdCategory { get; set; }
 
-        public virtual CategoryModel IdCategoryNavigation { get; set; } = null!;
+        public virtual Category IdCategoryNavigation { get; set; } = null!;
     }
 }

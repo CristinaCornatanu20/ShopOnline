@@ -58,13 +58,12 @@ namespace ShopOnline.Repository
                     // Aici copiezi proprietățile corespunzătoare din categoria din baza de date în categoria model
                     IdCategory = categoryFromDb.IdCategory,
                     Name = categoryFromDb.Name,
-                    // Copiază și celelalte proprietăți aici
                 };
 
                 return categoryModel;
             }
 
-            return null; // sau orice altă logică specifică cazului tău
+            return null; 
         }
 
 
@@ -107,13 +106,14 @@ namespace ShopOnline.Repository
 
         }
 
-        public void DeleteProduct(Guid id)
+        public void DeleteProduct(Guid id,string Img)
         {
             Product existingproduct = dbContext.Products.FirstOrDefault(x => x.IdProduct == id);
             if (existingproduct != null)
             {
                 dbContext.Products.Remove(existingproduct);
                 dbContext.SaveChanges();
+                DeleteImage(Img);
             }
         }
 
@@ -150,16 +150,17 @@ namespace ShopOnline.Repository
             }
             return product1;
         }
-        public IFormFile GetFormFileFromPath(string filePath)
+        public void DeleteImage(string imageName)
         {
-            byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
-
-            var memoryStream = new MemoryStream();
-            memoryStream.Write(fileBytes, 0, fileBytes.Length);
-            memoryStream.Seek(0, SeekOrigin.Begin);
-
-            var formFile = new FormFile(memoryStream, 0, fileBytes.Length, "name", "fileName.ext");
-            return formFile;
+            string imagePath = Path.Combine("wwwroot", imageName.TrimStart('/'));
+            try
+            {
+                    File.Delete(imagePath);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Eroare la ștergerea imaginii {imageName}: {ex.Message}");
+            }
         }
     }
 }

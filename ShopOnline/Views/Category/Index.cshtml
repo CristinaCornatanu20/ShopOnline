@@ -13,29 +13,30 @@
 <table class="table">
     <thead>
         <tr>
-            <th >
-                @Html.DisplayNameFor(model => model.IdCategory)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdCategory)
-                </td>
+                
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
-                    @Html.ActionLink("Edit","Edit",new{id=item.IdCategory})|
-                    @Html.ActionLink("Details","Details",new{id=item.IdCategory})|
-                    @Html.ActionLink("Delete","Delete",new{id=item.IdCategory})|
-            </td>
+            
+                <td>
+                    <div class="btn-group-vertical">
+                        <a asp-action="Edit" asp-route-id="@item.IdCategory" class="btn btn-primary mb-2">Edit</a>
+
+                        <a asp-action="Details" asp-route-id="@item.IdCategory" class="btn btn-secondary mb-2">Details</a>
+
+                        <a asp-action="Delete" asp-route-id="@item.IdCategory" class="btn btn-success mb-2">Delete</a>
+                    </div>
+                </td>
         </tr>
 }
     </tbody>

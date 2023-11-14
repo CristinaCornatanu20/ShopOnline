@@ -24,7 +24,13 @@ namespace ShopOnline.Repository
             return tvaList;
 
         }
+        public TvaModel GetTvaById(Guid id)
+        {
 
+            return MapDbObjectToModel(dbContext.Tvas.FirstOrDefault(x => x.IdTva == id));
+
+
+        }
         public Category GetCategoryById(Guid categoryId)
         {
             var categoryFromDb = dbContext.Categories.FirstOrDefault(c => c.IdCategory == categoryId);
@@ -45,14 +51,14 @@ namespace ShopOnline.Repository
             return null; // sau orice altă logică specifică cazului tău
         }
 
-        public void InsertCategory(TvaModel tvaModel)
+        public void InsertTva(TvaModel tvaModel)
         {
             tvaModel.IdTva = Guid.NewGuid();
             dbContext.Tvas.Add(MapModelToDbObject(tvaModel));
             dbContext.SaveChanges();
         }
 
-        public void UpdateCategory(TvaModel tvaModel)
+        public void UpdateTva(TvaModel tvaModel)
         {
             Tva tva = dbContext.Tvas.FirstOrDefault(x => x.IdTva == tvaModel.IdTva);
             if (tva != null)
@@ -65,12 +71,12 @@ namespace ShopOnline.Repository
             dbContext.SaveChanges();
         }
 
-        public void DeleteCategory(Guid id)
+        public void DeleteTva(Guid id)
         {
-            var existingCategory = dbContext.Categories.FirstOrDefault(c => c.IdCategory == id);
-            if (existingCategory != null)
+            var existingTva = dbContext.Tvas.FirstOrDefault(c => c.IdTva == id);
+            if (existingTva != null)
             {
-                dbContext.Categories.Remove(existingCategory);
+                dbContext.Tvas.Remove(existingTva);
 
             }
             dbContext.SaveChanges();
@@ -81,7 +87,7 @@ namespace ShopOnline.Repository
             TvaModel tvamodel = new TvaModel();
             if (dbTva != null)
             {
-                tvamodel.IdTva = dbTva.IdCategory;
+                tvamodel.IdTva = dbTva.IdTva;
                 tvamodel.Tval = dbTva.Tva1;
                 tvamodel.IdCategory = dbTva.IdCategory;
             }

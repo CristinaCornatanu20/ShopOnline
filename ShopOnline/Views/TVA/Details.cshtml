@@ -1,4 +1,4 @@
-﻿@model ShopOnline.Models.DBObjects.Tva
+﻿@model ShopOnline.Models.TvaModel
 
 @{
     ViewData["Title"] = "Details";
@@ -12,16 +12,16 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tva1)
+            @Html.DisplayNameFor(model => model.Tval)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tva1)
+            @Html.DisplayFor(model => model.Tval)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdCategoryNavigation)
+            @Html.DisplayNameFor(model => model.IdCategoryNavigation.Name)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdCategoryNavigation.IdCategory)
+            @Html.DisplayFor(model => model.IdCategoryNavigation.Name)
         </dd>
     </dl>
 </div>

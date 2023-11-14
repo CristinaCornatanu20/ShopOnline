@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ShopOnline.Models.DBObjects.Tva>
+﻿@model IEnumerable<ShopOnline.Models.TvaModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -10,32 +10,39 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table" align="center">
     <thead>
         <tr>
+           
             <th>
-                @Html.DisplayNameFor(model => model.Tva1)
+                @Html.DisplayNameFor(model => model.Tval)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdCategoryNavigation)
+                @Html.DisplayNameFor(model => model.IdCategoryNavigation.Name)
             </th>
-            <th></th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+              
             <td>
-                @Html.DisplayFor(modelItem => item.Tva1)
+                @Html.DisplayFor(modelItem => item.Tval)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdCategoryNavigation.IdCategory)
+                @Html.DisplayFor(modelItem => item.IdCategoryNavigation.Name)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdTva">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdTva">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdTva">Delete</a>
-            </td>
+          
+                <td>
+                    <div class="btn-group-vertical">
+                        <a asp-action="Edit" asp-route-id="@item.IdTva" class="btn btn-primary mb-2">Edit</a>
+
+                        <a asp-action="Details" asp-route-id="@item.IdTva" class="btn btn-secondary mb-2">Details</a>
+
+                        <a asp-action="Delete" asp-route-id="@item.IdTva" class="btn btn-success mb-2">Delete</a>
+                    </div>
+                </td>
         </tr>
 }
     </tbody>

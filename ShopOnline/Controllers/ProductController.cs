@@ -214,7 +214,8 @@ namespace ShopOnline.Controllers
         {
             try
             {
-                _context.DeleteProduct(id);
+                var product = _context.GetProductById(id);
+                _context.DeleteProduct(id,product.Image);
                 return RedirectToAction(nameof(Index));
 
             }

@@ -1,5 +1,4 @@
-﻿@model ShopOnline.Models.DBObjects.Tva
-
+﻿@model ShopOnline.Models.TvaModel
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,15 +12,11 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
             <div class="form-group">
-                <label asp-for="IdTva" class="control-label"></label>
-                <input asp-for="IdTva" class="form-control" />
-                <span asp-validation-for="IdTva" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tva1" class="control-label"></label>
-                <input asp-for="Tva1" class="form-control" />
-                <span asp-validation-for="Tva1" class="text-danger"></span>
+                <label asp-for="Tval" class="control-label"></label>
+                <input asp-for="Tval" class="form-control" />
+                <span asp-validation-for="Tval" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IdCategory" class="control-label"></label>

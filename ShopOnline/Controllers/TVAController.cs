@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ShopOnline.Data;
+using ShopOnline.Models;
 using ShopOnline.Models.DBObjects;
 
 namespace ShopOnline.Controllers
@@ -13,43 +14,41 @@ namespace ShopOnline.Controllers
     public class TVAController : Controller
     {
         private readonly ApplicationDbContext _context;
-
+        private readonly Repository.TvaRepository _repository;
+        private readonly Repository.CategoryRepository _cat;
         public TVAController(ApplicationDbContext context)
         {
             _context = context;
+            _repository=new Repository.TvaRepository(context);
+            _cat=new Repository.CategoryRepository(context);
         }
 
         // GET: TVA
-        public async Task<IActionResult> Index()
+        public ActionResult Index()
         {
-            var applicationDbContext = _context.Tvas.Include(t => t.IdCategoryNavigation);
-            return View(await applicationDbContext.ToListAsync());
+            var tvas = _repository.GetAllTVAs();
+            foreach (var tva in tvas)
+            {
+                tva.IdCategoryNavigation = _repository.GetCategoryById(tva.IdCategory);
+                ViewBag.CategoryNameForProduct = tva.IdCategoryNavigation.Name;
+            }
+                return View(tvas);
         }
 
         // GET: TVA/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(Guid id)
         {
-            if (id == null || _context.Tvas == null)
-            {
-                return NotFound();
-            }
-
-            var tva = await _context.Tvas
-                .Include(t => t.IdCategoryNavigation)
-                .FirstOrDefaultAsync(m => m.IdTva == id);
-            if (tva == null)
-            {
-                return NotFound();
-            }
-
-            return View(tva);
+            var tva = _repository.GetTvaById(id);
+            tva.IdCategoryNavigation = _repository.GetCategoryById(tva.IdCategory);
+            ViewBag.CategoryNameForProduct = tva.IdCategoryNavigation.Name;
+            return View("Details", tva);
         }
 
         // GET: TVA/Create
-        public IActionResult Create()
+        public ActionResult Create()
         {
-            ViewData["IdCategory"] = new SelectList(_context.Categories, "IdCategory", "IdCategory");
-            return View();
+            ViewData["IdCategory"] = new SelectList(_cat.GetAllCategories(), "IdCategory", "Name");
+            return View("Create");
         }
 
         // POST: TVA/Create
@@ -57,34 +56,37 @@ namespace ShopOnline.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdTva,Tva1,IdCategory")] Tva tva)
+        public async Task<IActionResult> Create([Bind("IdTva,Tval,IdCategory")] TvaModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                tva.IdTva = Guid.NewGuid();
-                _context.Add(tva);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                
+                    _repository.InsertTva(model);
+                    return RedirectToAction(nameof(Index));
+
             }
-            ViewData["IdCategory"] = new SelectList(_context.Categories, "IdCategory", "IdCategory", tva.IdCategory);
-            return View(tva);
+            catch
+            {
+                return View("Create");
+            }
+
+            return RedirectToAction(nameof(Index));
+
         }
 
         // GET: TVA/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public ActionResult Edit(Guid id)
         {
-            if (id == null || _context.Tvas == null)
-            {
-                return NotFound();
-            }
 
-            var tva = await _context.Tvas.FindAsync(id);
+
+            var tva = _repository.GetTvaById(id);
             if (tva == null)
             {
                 return NotFound();
             }
-            ViewData["IdCategory"] = new SelectList(_context.Categories, "IdCategory", "IdCategory", tva.IdCategory);
-            return View(tva);
+
+            ViewData["IdCategory"] = new SelectList(_context.Categories, "IdCategory", "Name", tva.IdCategory);
+            return View("Edit", tva);
         }
 
         // POST: TVA/Edit/5
@@ -92,78 +94,57 @@ namespace ShopOnline.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("IdTva,Tva1,IdCategory")] Tva tva)
+        public async Task<ActionResult> Edit(Guid id, [Bind("IdTva, Tval, IdCategory")] Models.TvaModel model)
         {
-            if (id != tva.IdTva)
+            try
             {
-                return NotFound();
-            }
+                
+                model.IdTva = id;
+                
+                    _repository.UpdateTva(model);
+                    return RedirectToAction("Index");
+               
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(tva);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TvaExists(tva.IdTva))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["IdCategory"] = new SelectList(_context.Categories, "IdCategory", "IdCategory", tva.IdCategory);
-            return View(tva);
+            catch
+            {
+                return RedirectToAction("Index", id);
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: TVA/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public ActionResult Delete(Guid id)
         {
-            if (id == null || _context.Tvas == null)
-            {
-                return NotFound();
-            }
 
-            var tva = await _context.Tvas
-                .Include(t => t.IdCategoryNavigation)
-                .FirstOrDefaultAsync(m => m.IdTva == id);
+
+            var tva = _repository.GetTvaById(id);
             if (tva == null)
             {
                 return NotFound();
             }
-
-            return View(tva);
+            tva.IdCategoryNavigation = _repository.GetCategoryById(tva.IdCategory);
+            ViewBag.CategoryNameForProduct = tva.IdCategoryNavigation.Name;
+            return View("Delete", tva);
         }
 
         // POST: TVA/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public ActionResult Delete(Guid id, IFormCollection collection)
         {
-            if (_context.Tvas == null)
+            try
             {
-                return Problem("Entity set 'ApplicationDbContext.Tvas'  is null.");
+                _repository.DeleteTva(id);
+                return RedirectToAction(nameof(Index));
+
             }
-            var tva = await _context.Tvas.FindAsync(id);
-            if (tva != null)
+            catch
             {
-                _context.Tvas.Remove(tva);
+                return View("Delete");
             }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
 
-        private bool TvaExists(Guid id)
-        {
-          return (_context.Tvas?.Any(e => e.IdTva == id)).GetValueOrDefault();
-        }
+       
     }
 }
