@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)sqlitepclraw.lib.e_sqlite3\2.1.2\buildTransitive\net6.0\SQLitePCLRaw.lib.e_sqlite3.targets" Condition="Exists('$(NuGetPackageRoot)sqlitepclraw.lib.e_sqlite3\2.1.2\buildTransitive\net6.0\SQLitePCLRaw.lib.e_sqlite3.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.aspnetcore.identity.ui\6.0.21\buildTransitive\Microsoft.AspNetCore.Identity.UI.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.aspnetcore.identity.ui\6.0.21\buildTransitive\Microsoft.AspNetCore.Identity.UI.targets')" />
+    <Import Project="$(NuGetPackageRoot)ikvm.msbuild.tools\8.7.0\buildTransitive\netstandard2.0\IKVM.MSBuild.Tools.targets" Condition="Exists('$(NuGetPackageRoot)ikvm.msbuild.tools\8.7.0\buildTransitive\netstandard2.0\IKVM.MSBuild.Tools.targets')" />
+    <Import Project="$(NuGetPackageRoot)ikvm.msbuild\8.7.0\buildTransitive\IKVM.MSBuild.targets" Condition="Exists('$(NuGetPackageRoot)ikvm.msbuild\8.7.0\buildTransitive\IKVM.MSBuild.targets')" />
+    <Import Project="$(NuGetPackageRoot)ikvm.image\8.7.0\buildTransitive\IKVM.Image.targets" Condition="Exists('$(NuGetPackageRoot)ikvm.image\8.7.0\buildTransitive\IKVM.Image.targets')" />
+    <Import Project="$(NuGetPackageRoot)ikvm\8.7.0\buildTransitive\IKVM.targets" Condition="Exists('$(NuGetPackageRoot)ikvm\8.7.0\buildTransitive\IKVM.targets')" />
+  </ImportGroup>
+</Project>
