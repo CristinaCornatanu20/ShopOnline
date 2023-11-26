@@ -19,9 +19,12 @@ using ShopOnline.Models.DBObjects;
 using System.Text;
 using com.sun.security.ntlm;
 using com.sun.corba.se.impl.orbutil.concurrent;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ShopOnline.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class ProductController : Controller
     {
        // private readonly ApplicationDbContext _context;

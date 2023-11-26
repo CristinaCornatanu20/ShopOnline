@@ -156,24 +156,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hvcHBpbmdDYXJ0XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/corna/source/repos/ShopOnline/ShopOnline/Views/TVA/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVFZBXENyZWF0ZS5jc2h0bWw=
+[C:/Users/corna/source/repos/ShopOnline/ShopOnline/Views/Tva/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHZhXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/corna/source/repos/ShopOnline/ShopOnline/Views/TVA/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVFZBXERlbGV0ZS5jc2h0bWw=
+[C:/Users/corna/source/repos/ShopOnline/ShopOnline/Views/Tva/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHZhXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/corna/source/repos/ShopOnline/ShopOnline/Views/TVA/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVFZBXERldGFpbHMuY3NodG1s
+[C:/Users/corna/source/repos/ShopOnline/ShopOnline/Views/Tva/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHZhXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/corna/source/repos/ShopOnline/ShopOnline/Views/TVA/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVFZBXEVkaXQuY3NodG1s
+[C:/Users/corna/source/repos/ShopOnline/ShopOnline/Views/Tva/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHZhXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/corna/source/repos/ShopOnline/ShopOnline/Views/TVA/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVFZBXEluZGV4LmNzaHRtbA==
+[C:/Users/corna/source/repos/ShopOnline/ShopOnline/Views/Tva/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHZhXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/corna/source/repos/ShopOnline/ShopOnline/Views/_ViewImports.cshtml]

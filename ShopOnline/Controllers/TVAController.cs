@@ -1,29 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using ShopOnline.Data;
 using ShopOnline.Models;
-using ShopOnline.Models.DBObjects;
 
 namespace ShopOnline.Controllers
 {
-    public class TVAController1 : Controller
+    public class TvaController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly Repository.TvaRepository _repository;
         private readonly Repository.CategoryRepository _cat;
-        public TVAController1(ApplicationDbContext context)
+        public TvaController(ApplicationDbContext context)
         {
             _context = context;
-            _repository=new Repository.TvaRepository(context);
-            _cat=new Repository.CategoryRepository(context);
+            _repository = new Repository.TvaRepository(context);
+            _cat = new Repository.CategoryRepository(context);
         }
-
-        // GET: TVA
+        // GET: TvaController
         public ActionResult Index()
         {
             var tvas = _repository.GetAllTVAs();
@@ -32,11 +26,11 @@ namespace ShopOnline.Controllers
                 tva.IdCategoryNavigation = _repository.GetCategoryById(tva.IdCategory);
                 ViewBag.CategoryNameForProduct = tva.IdCategoryNavigation.Name;
             }
-                return View(tvas);
+            return View(tvas);
         }
 
-        // GET: TVA/Details/5
-        public async Task<IActionResult> Details(Guid id)
+        // GET: TvaController/Details/5
+        public ActionResult Details(Guid id)
         {
             var tva = _repository.GetTvaById(id);
             tva.IdCategoryNavigation = _repository.GetCategoryById(tva.IdCategory);
@@ -44,24 +38,22 @@ namespace ShopOnline.Controllers
             return View("Details", tva);
         }
 
-        // GET: TVA/Create
+        // GET: TvaController/Create
         public ActionResult Create()
         {
             ViewData["IdCategory"] = new SelectList(_cat.GetAllCategories(), "IdCategory", "Name");
             return View("Create");
         }
 
-        // POST: TVA/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: TvaController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdTva,Tval,IdCategory")] TvaModel model)
         {
             try
             {
-                    _repository.InsertTva(model);
-                    return RedirectToAction(nameof(Index));
+                _repository.InsertTva(model);
+                return RedirectToAction(nameof(Index));
 
             }
             catch
@@ -73,11 +65,10 @@ namespace ShopOnline.Controllers
 
         }
 
-        // GET: TVA/Edit/5
+
+        // GET: TvaController/Edit/5
         public ActionResult Edit(Guid id)
         {
-
-
             var tva = _repository.GetTvaById(id);
             if (tva == null)
             {
@@ -88,21 +79,19 @@ namespace ShopOnline.Controllers
             return View("Edit", tva);
         }
 
-        // POST: TVA/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: TvaController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Guid id, [Bind("IdTva, Tval, IdCategory")] Models.TvaModel model)
         {
             try
             {
-                
+
                 model.IdTva = id;
-                
-                    _repository.UpdateTva(model);
-                    return RedirectToAction("Index");
-               
+
+                _repository.UpdateTva(model);
+                return RedirectToAction("Index");
+
 
             }
             catch
@@ -112,11 +101,10 @@ namespace ShopOnline.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: TVA/Delete/5
+
+        // GET: TvaController/Delete/5
         public ActionResult Delete(Guid id)
         {
-
-
             var tva = _repository.GetTvaById(id);
             if (tva == null)
             {
@@ -127,8 +115,8 @@ namespace ShopOnline.Controllers
             return View("Delete", tva);
         }
 
-        // POST: TVA/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: TvaController/Delete/5
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(Guid id, IFormCollection collection)
         {
@@ -144,6 +132,5 @@ namespace ShopOnline.Controllers
             }
         }
 
-       
     }
 }

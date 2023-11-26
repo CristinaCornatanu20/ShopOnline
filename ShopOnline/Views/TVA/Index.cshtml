@@ -2,10 +2,11 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h1>Index</h1>
+
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,7 +14,7 @@
 <table class="table" align="center">
     <thead>
         <tr>
-           
+
             <th>
                 @Html.DisplayNameFor(model => model.Tval)
             </th>
@@ -24,16 +25,17 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-              
-            <td>
-                @Html.DisplayFor(modelItem => item.Tval)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdCategoryNavigation.Name)
-            </td>
-          
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tval)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCategoryNavigation.Name)
+                </td>
+
                 <td>
                     <div class="btn-group-vertical">
                         <a asp-action="Edit" asp-route-id="@item.IdTva" class="btn btn-primary mb-2">Edit</a>
@@ -43,7 +45,7 @@
                         <a asp-action="Delete" asp-route-id="@item.IdTva" class="btn btn-success mb-2">Delete</a>
                     </div>
                 </td>
-        </tr>
-}
+            </tr>
+        }
     </tbody>
 </table>
