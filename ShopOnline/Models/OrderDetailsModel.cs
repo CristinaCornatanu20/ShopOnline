@@ -1,4 +1,6 @@
-﻿namespace ShopOnline.Models
+﻿using ShopOnline.Models.DBObjects;
+
+namespace ShopOnline.Models
 {
     public class OrderDetailsModel
     {
@@ -9,5 +11,9 @@
         public decimal? PriceTva { get; set; }
         public int? Quantity { get; set; }
         public decimal? PriceTotal { get; set; }
+
+        public virtual Order IdOrderNavigation { get; set; } = null!;
+        public virtual Product IdProductNavigation { get; set; } = null!;
+        public virtual Tva IdTvaNavigation { get; set; } = null!;
     }
 }

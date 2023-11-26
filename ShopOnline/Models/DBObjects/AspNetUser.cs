@@ -34,5 +34,6 @@ namespace ShopOnline.Models.DBObjects
         public virtual ICollection<AspNetUserToken> AspNetUserTokens { get; set; }
 
         public virtual ICollection<AspNetRole> Roles { get; set; }
+        public object Orders { get; internal set; }
     }
 }

@@ -31,6 +31,11 @@ namespace ShopOnline.Repository
 
 
         }
+        public TvaModel GetTvaByCategoryId(Guid categoryId)
+        {
+            
+            return MapDbObjectToModel(dbContext.Tvas.FirstOrDefault(x => x.IdCategory == categoryId));
+        }
         public Category GetCategoryById(Guid categoryId)
         {
             var categoryFromDb = dbContext.Categories.FirstOrDefault(c => c.IdCategory == categoryId);

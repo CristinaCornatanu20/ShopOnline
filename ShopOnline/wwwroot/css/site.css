@@ -14,11 +14,16 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
-  color:red;
-  background-color:black;
+    margin-bottom: 60px;
+    color: red;
+    background-color: black;
+    align-items: center;
 }
-
+table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .table th{
     color:red;
     font-style:italic;
@@ -29,3 +34,10 @@ body {
     color: white;
 }
 
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  
+    padding: 10px 0; 
+}

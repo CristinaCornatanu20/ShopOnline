@@ -1,0 +1,41 @@
+﻿@model List<ShopOnline.Models.OrderDetailsModel>
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Your Shopping Cart</h2>
+
+@if (Model == null || !Model.Any())
+{
+    <p>Your shopping cart is empty.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.IdProductNavigation.Name</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.PriceTva</td>
+                    <td>@item.PriceTotal</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<a asp-action="AddToCart" class="btn btn-primary">Add more items</a>
+
+

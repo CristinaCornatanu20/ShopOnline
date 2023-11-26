@@ -31,7 +31,26 @@ namespace ShopOnline.Repository
         {
             return MapDbObjectToModel(dbContext.OrderDetails.FirstOrDefault(x => x.IdOrderDetails == id));
         }
+        public List<OrderDetailsModel> GetOrderDetailsByOrderId(Guid orderId)
+        {
+            var orderDetailsList = new List<OrderDetailsModel>();
+            var orderDetails = dbContext.OrderDetails.Where(od => od.IdOrder == orderId);
 
+            foreach (var dbOrderDetails in orderDetails)
+            {
+                orderDetailsList.Add(MapDbObjectToModel(dbOrderDetails));
+            }
+
+            return orderDetailsList;
+        }
+        public List<OrderDetailsModel> GetOrderDetailsByUserId(string userId)
+        {
+            // Obține toate detaliile comenzii pentru un anumit utilizator
+            return dbContext.OrderDetails
+                .Where(o => o.IdOrderNavigation.IdUser == userId)
+                .Select(MapDbObjectToModel) // Mapează detaliile comenzii la model
+                .ToList();
+        }
         public void InsertOrderDetails(OrderDetailsModel orderModel)
         {
             orderModel.IdOrder = Guid.NewGuid();

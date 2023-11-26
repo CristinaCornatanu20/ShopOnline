@@ -48,7 +48,7 @@ namespace ShopOnline.Controllers
         // GET: Order/Create
         public IActionResult Create()
         {
-            ViewData["IdUser"] = new SelectList(_context.Users, "IdUser", "IdUser");
+            //ViewData["IdUser"] = new SelectList(_context.AspNetUser, "Id", "Id");
             return View();
         }
 
@@ -66,7 +66,7 @@ namespace ShopOnline.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdUser"] = new SelectList(_context.Users, "IdUser", "IdUser", order.IdUser);
+            //ViewData["IdUser"] = new SelectList(_context.Users, "IdUser", "IdUser", order.IdUser);
             return View(order);
         }
 
@@ -83,7 +83,7 @@ namespace ShopOnline.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdUser"] = new SelectList(_context.Users, "IdUser", "IdUser", order.IdUser);
+            //ViewData["IdUser"] = new SelectList(_context.Users, "IdUser", "IdUser", order.IdUser);
             return View(order);
         }
 
@@ -119,7 +119,7 @@ namespace ShopOnline.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdUser"] = new SelectList(_context.Users, "IdUser", "IdUser", order.IdUser);
+           // ViewData["IdUser"] = new SelectList(_context.Users, "IdUser", "IdUser", order.IdUser);
             return View(order);
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ShopOnline.Models.DBObjects
 {
@@ -9,7 +10,7 @@ namespace ShopOnline.Models.DBObjects
         {
             OrderDetails = new HashSet<OrderDetail>();
         }
-
+        [Key]
         public Guid IdProduct { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }

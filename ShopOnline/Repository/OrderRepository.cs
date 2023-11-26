@@ -30,6 +30,10 @@ namespace ShopOnline.Repository
         {
             return MapDbObjectToModel(dbContext.Orders.FirstOrDefault(x => x.IdOrder == id));
         }
+        public OrderModel GetOrderByUserId(string userId)
+        {
+            return MapDbObjectToModel(dbContext.Orders.FirstOrDefault(x => x.IdUser == userId));
+        }
 
         public void InsertOrder(OrderModel orderModel)
         {

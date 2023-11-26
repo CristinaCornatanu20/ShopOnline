@@ -23,14 +23,23 @@ namespace ShopOnline.Controllers
 
         public IActionResult Index()
         {
-            var products = repository.GetAllProducts();
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("AdminIndex");
+            }
 
+            var products = repository.GetAllProducts();
             return View(products);
         }
 
         public IActionResult Privacy()
         {
             return View();
+        }
+        public IActionResult AdminIndex()
+        {
+            var products = repository.GetAllProducts();
+            return View("AdminIndex", products);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

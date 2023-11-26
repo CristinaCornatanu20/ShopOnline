@@ -11,12 +11,12 @@ using ShopOnline.Models.DBObjects;
 
 namespace ShopOnline.Controllers
 {
-    public class TVAController : Controller
+    public class TVAController1 : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly Repository.TvaRepository _repository;
         private readonly Repository.CategoryRepository _cat;
-        public TVAController(ApplicationDbContext context)
+        public TVAController1(ApplicationDbContext context)
         {
             _context = context;
             _repository=new Repository.TvaRepository(context);
@@ -60,7 +60,6 @@ namespace ShopOnline.Controllers
         {
             try
             {
-                
                     _repository.InsertTva(model);
                     return RedirectToAction(nameof(Index));
 

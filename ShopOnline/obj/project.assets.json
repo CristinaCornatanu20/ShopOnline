@@ -2,6 +2,22 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "FluentValidation/8.6.1": {
+        "type": "package",
+        "dependencies": {
+          "System.ComponentModel.Annotations": "4.4.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/FluentValidation.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/FluentValidation.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Humanizer/2.14.1": {
         "type": "package",
         "dependencies": {
@@ -1119,7 +1135,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Cryptography.Internal/6.0.21": {
+      "Microsoft.AspNetCore.Cryptography.Internal/6.0.23": {
         "type": "package",
         "compile": {
           "lib/net6.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {
@@ -1132,10 +1148,10 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Cryptography.KeyDerivation/6.0.21": {
+      "Microsoft.AspNetCore.Cryptography.KeyDerivation/6.0.23": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Cryptography.Internal": "6.0.21"
+          "Microsoft.AspNetCore.Cryptography.Internal": "6.0.23"
         },
         "compile": {
           "lib/net6.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {
@@ -1330,11 +1346,11 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/6.0.21": {
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/6.0.23": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "6.0.21",
-          "Microsoft.Extensions.Identity.Stores": "6.0.21"
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.23",
+          "Microsoft.Extensions.Identity.Stores": "6.0.23"
         },
         "compile": {
           "lib/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
@@ -1347,11 +1363,11 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Identity.UI/6.0.21": {
+      "Microsoft.AspNetCore.Identity.UI/6.0.23": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.FileProviders.Embedded": "6.0.21",
-          "Microsoft.Extensions.Identity.Stores": "6.0.21"
+          "Microsoft.Extensions.FileProviders.Embedded": "6.0.23",
+          "Microsoft.Extensions.Identity.Stores": "6.0.23"
         },
         "compile": {
           "lib/net6.0/Microsoft.AspNetCore.Identity.UI.dll": {
@@ -2297,7 +2313,7 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
-      "Microsoft.Extensions.FileProviders.Embedded/6.0.21": {
+      "Microsoft.Extensions.FileProviders.Embedded/6.0.23": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.FileProviders.Abstractions": "6.0.0"
@@ -2338,10 +2354,10 @@
           }
         }
       },
-      "Microsoft.Extensions.Identity.Core/6.0.21": {
+      "Microsoft.Extensions.Identity.Core/6.0.23": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "6.0.21",
+          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "6.0.23",
           "Microsoft.Extensions.Logging": "6.0.0",
           "Microsoft.Extensions.Options": "6.0.0"
         },
@@ -2356,11 +2372,11 @@
           }
         }
       },
-      "Microsoft.Extensions.Identity.Stores/6.0.21": {
+      "Microsoft.Extensions.Identity.Stores/6.0.23": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Caching.Abstractions": "6.0.0",
-          "Microsoft.Extensions.Identity.Core": "6.0.21",
+          "Microsoft.Extensions.Identity.Core": "6.0.23",
           "Microsoft.Extensions.Logging": "6.0.0"
         },
         "compile": {
@@ -3111,6 +3127,74 @@
           "lib/netstandard2.0/NuGet.Versioning.dll": {}
         }
       },
+      "Optivem.Framework.Core.All/1.0.23": {
+        "type": "package",
+        "dependencies": {
+          "Optivem.Framework.Core.Application": "1.0.23",
+          "Optivem.Framework.Core.Application.Interface": "1.0.23",
+          "Optivem.Framework.Core.Common": "1.0.23",
+          "Optivem.Framework.Core.Domain": "1.0.23"
+        },
+        "compile": {
+          "lib/netstandard2.1/Optivem.Framework.Core.All.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Optivem.Framework.Core.All.dll": {}
+        }
+      },
+      "Optivem.Framework.Core.Application/1.0.23": {
+        "type": "package",
+        "dependencies": {
+          "Optivem.Framework.Core.Application.Interface": "1.0.23",
+          "Optivem.Framework.Core.Domain": "1.0.23"
+        },
+        "compile": {
+          "lib/netstandard2.1/Optivem.Framework.Core.Application.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Optivem.Framework.Core.Application.dll": {}
+        }
+      },
+      "Optivem.Framework.Core.Application.Interface/1.0.23": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/Optivem.Framework.Core.Application.Interface.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Optivem.Framework.Core.Application.Interface.dll": {}
+        }
+      },
+      "Optivem.Framework.Core.Common/1.0.23": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/Optivem.Framework.Core.Common.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Optivem.Framework.Core.Common.dll": {}
+        }
+      },
+      "Optivem.Framework.Core.Domain/1.0.23": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/Optivem.Framework.Core.Domain.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Optivem.Framework.Core.Domain.dll": {}
+        }
+      },
+      "Optivem.Framework.Infrastructure.FluentValidation/1.0.23": {
+        "type": "package",
+        "dependencies": {
+          "FluentValidation": "8.6.1",
+          "Optivem.Framework.Core.All": "1.0.23"
+        },
+        "compile": {
+          "lib/netstandard2.1/Optivem.Framework.Infrastructure.FluentValidation.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Optivem.Framework.Infrastructure.FluentValidation.dll": {}
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
@@ -3497,6 +3581,15 @@
         },
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
+      "System.ComponentModel.Annotations/4.4.1": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/_._": {}
         }
       },
       "System.Composition/1.0.31": {
@@ -5011,6 +5104,25 @@
     }
   },
   "libraries": {
+    "FluentValidation/8.6.1": {
+      "sha512": "g0xw/YCVgJ1IYpBgKF9iuci/Arf6Dsq9H/WeeT9zaBpjrEA+Cr2GjWXHu1F0DKqVzp4J4hta4gGrRt6H4aESqQ==",
+      "type": "package",
+      "path": "fluentvalidation/8.6.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fluentvalidation.8.6.1.nupkg.sha512",
+        "fluentvalidation.nuspec",
+        "lib/net45/FluentValidation.dll",
+        "lib/net45/FluentValidation.xml",
+        "lib/netstandard1.1/FluentValidation.dll",
+        "lib/netstandard1.1/FluentValidation.xml",
+        "lib/netstandard1.6/FluentValidation.dll",
+        "lib/netstandard1.6/FluentValidation.xml",
+        "lib/netstandard2.0/FluentValidation.dll",
+        "lib/netstandard2.0/FluentValidation.xml"
+      ]
+    },
     "Humanizer/2.14.1": {
       "sha512": "/FUTD3cEceAAmJSCPN9+J+VhGwmL/C12jvwlyM1DFXShEMsBzvLzLqSrJ2rb+k/W2znKw7JyflZgZpyE+tI7lA==",
       "type": "package",
@@ -11013,10 +11125,10 @@
         "microsoft.aspnetcore.authentication.core.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Cryptography.Internal/6.0.21": {
-      "sha512": "/vj55eQG124Lhh2oT7oOGDkNSrAC2FNoxWt3m0Iygtgb5iExxWd5qxzwcjB4xYUkg2SVW+EZXo82iC0okOvNrg==",
+    "Microsoft.AspNetCore.Cryptography.Internal/6.0.23": {
+      "sha512": "m/LACmFx927uyIINU1EWJG1KCwUDGO2OxesdQjbjHXRrPZGfgFNPRnnW3qe4/p3iBEqUB3bc1q79I68dMh4VXQ==",
       "type": "package",
-      "path": "microsoft.aspnetcore.cryptography.internal/6.0.21",
+      "path": "microsoft.aspnetcore.cryptography.internal/6.0.23",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -11028,14 +11140,14 @@
         "lib/net6.0/Microsoft.AspNetCore.Cryptography.Internal.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.xml",
-        "microsoft.aspnetcore.cryptography.internal.6.0.21.nupkg.sha512",
+        "microsoft.aspnetcore.cryptography.internal.6.0.23.nupkg.sha512",
         "microsoft.aspnetcore.cryptography.internal.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Cryptography.KeyDerivation/6.0.21": {
-      "sha512": "PhqdH0xiFqUqXe30Z1FI/YaD+c4lZFIQRcW3oBb9pnANmAVbXw+vz8f6BIvdwU/HIDUEaaB47TxUsfiXPhihMw==",
+    "Microsoft.AspNetCore.Cryptography.KeyDerivation/6.0.23": {
+      "sha512": "bGLn6VqStKJR09K4NmfKdxYLIF93ILurFmx+qP9zV99SPRzaa05sOUBkWrZbhZGiQoeo8o6pNAAVy+zR3mm7SQ==",
       "type": "package",
-      "path": "microsoft.aspnetcore.cryptography.keyderivation/6.0.21",
+      "path": "microsoft.aspnetcore.cryptography.keyderivation/6.0.23",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -11047,7 +11159,7 @@
         "lib/net6.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
-        "microsoft.aspnetcore.cryptography.keyderivation.6.0.21.nupkg.sha512",
+        "microsoft.aspnetcore.cryptography.keyderivation.6.0.23.nupkg.sha512",
         "microsoft.aspnetcore.cryptography.keyderivation.nuspec"
       ]
     },
@@ -11183,10 +11295,10 @@
         "microsoft.aspnetcore.identity.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/6.0.21": {
-      "sha512": "rIqPnAf8L15cveZy5TRcrZWk0gOUWxd73F7hbaTjKR2XwUAGIBIrLZCEw0COfshqyf9vU6/MmAtGEtEDqcLkXw==",
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/6.0.23": {
+      "sha512": "yNEHYuOOdAiZzgopbmYLe3csZ9gstrKu++HzG/1lfujDL997QzSe30U3GTbK/fzI/GGo+XCEKy8KVzmu8DJIDw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.identity.entityframeworkcore/6.0.21",
+      "path": "microsoft.aspnetcore.identity.entityframeworkcore/6.0.23",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -11194,14 +11306,14 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll",
         "lib/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml",
-        "microsoft.aspnetcore.identity.entityframeworkcore.6.0.21.nupkg.sha512",
+        "microsoft.aspnetcore.identity.entityframeworkcore.6.0.23.nupkg.sha512",
         "microsoft.aspnetcore.identity.entityframeworkcore.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Identity.UI/6.0.21": {
-      "sha512": "DeRm3BQCMuoGKuMMWk8sLQn7zY/bMTP2fvEuOfA/0IAxAdyyO2oO7lMtYEGNja85mOsyWbOJl0g9/Qmj05g5kw==",
+    "Microsoft.AspNetCore.Identity.UI/6.0.23": {
+      "sha512": "ud1WmdsnFqnijQEb4W2U/Djhvbe7C31pSDBabuivRZFjb/7b1T5RcQdMmvE/DJ9Tac+cOdSURGcWk4vp0sRd7Q==",
       "type": "package",
-      "path": "microsoft.aspnetcore.identity.ui/6.0.21",
+      "path": "microsoft.aspnetcore.identity.ui/6.0.23",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -11216,7 +11328,7 @@
         "buildTransitive/Microsoft.AspNetCore.Identity.UI.targets",
         "lib/net6.0/Microsoft.AspNetCore.Identity.UI.dll",
         "lib/net6.0/Microsoft.AspNetCore.Identity.UI.xml",
-        "microsoft.aspnetcore.identity.ui.6.0.21.nupkg.sha512",
+        "microsoft.aspnetcore.identity.ui.6.0.23.nupkg.sha512",
         "microsoft.aspnetcore.identity.ui.nuspec",
         "staticwebassets/V4/css/site.css",
         "staticwebassets/V4/favicon.ico",
@@ -12361,10 +12473,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.FileProviders.Embedded/6.0.21": {
-      "sha512": "CDaCigED844Az5OQBzTeY1WBP+fW9dglFr8XO7uwZjX3HyjtN8W11cxYSHM2PDmHTZ88dACcXFQ2RrdmzIiR8w==",
+    "Microsoft.Extensions.FileProviders.Embedded/6.0.23": {
+      "sha512": "Z1tdhh0ro8v11pkRXR1llOTt+SGWP8Wi780oLQGIDcmwx6EMQCbgq5RghnIQOtShlTHWkEGeyVBbBUsbxdMb0A==",
       "type": "package",
-      "path": "microsoft.extensions.fileproviders.embedded/6.0.21",
+      "path": "microsoft.extensions.fileproviders.embedded/6.0.23",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -12379,7 +12491,7 @@
         "lib/net6.0/Microsoft.Extensions.FileProviders.Embedded.xml",
         "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Embedded.dll",
         "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Embedded.xml",
-        "microsoft.extensions.fileproviders.embedded.6.0.21.nupkg.sha512",
+        "microsoft.extensions.fileproviders.embedded.6.0.23.nupkg.sha512",
         "microsoft.extensions.fileproviders.embedded.nuspec",
         "tasks/netstandard2.0/Microsoft.Extensions.FileProviders.Embedded.Manifest.Task.dll"
       ]
@@ -12397,10 +12509,10 @@
         "microsoft.extensions.hosting.abstractions.nuspec"
       ]
     },
-    "Microsoft.Extensions.Identity.Core/6.0.21": {
-      "sha512": "yYbRf/iLYM8jwjLJtbX3iDsHjSB+6tr/tmnSkjM/ZUUIbv/76OUD8+RNcxB0r3LobG/+rZqXNwZTAvtDWeg7Jg==",
+    "Microsoft.Extensions.Identity.Core/6.0.23": {
+      "sha512": "67uH4Kg+uer6Rn+nwosy98E11v1p+hQFsnm3YxYlwm2id2aqLjEXS3KAZVfyQ9ENlqmK65mR79vxDXvYgCuaaA==",
       "type": "package",
-      "path": "microsoft.extensions.identity.core/6.0.21",
+      "path": "microsoft.extensions.identity.core/6.0.23",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -12412,14 +12524,14 @@
         "lib/net6.0/Microsoft.Extensions.Identity.Core.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.xml",
-        "microsoft.extensions.identity.core.6.0.21.nupkg.sha512",
+        "microsoft.extensions.identity.core.6.0.23.nupkg.sha512",
         "microsoft.extensions.identity.core.nuspec"
       ]
     },
-    "Microsoft.Extensions.Identity.Stores/6.0.21": {
-      "sha512": "pkEwazi7GhaGF1+MNdQ27wGXNyZh/r/ssMZT40yp+coua4bQz2xGevoiXYuLunayt+tKBpbpVFKnAcIlX+1IiQ==",
+    "Microsoft.Extensions.Identity.Stores/6.0.23": {
+      "sha512": "JH0wC2DqFsIRkPYaPyXAfrmPdralHsxVS6YESVv6GXtvXGKJCg39rRjYi4h1cJgdQxkm3EwNQKJU7/snGCIhoA==",
       "type": "package",
-      "path": "microsoft.extensions.identity.stores/6.0.21",
+      "path": "microsoft.extensions.identity.stores/6.0.23",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -12431,7 +12543,7 @@
         "lib/net6.0/Microsoft.Extensions.Identity.Stores.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Stores.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Stores.xml",
-        "microsoft.extensions.identity.stores.6.0.21.nupkg.sha512",
+        "microsoft.extensions.identity.stores.6.0.23.nupkg.sha512",
         "microsoft.extensions.identity.stores.nuspec"
       ]
     },
@@ -13749,6 +13861,78 @@
         "nuget.versioning.nuspec"
       ]
     },
+    "Optivem.Framework.Core.All/1.0.23": {
+      "sha512": "Dg2qbgsFXpx7I6e0qk9aorwacjxe+H4HH3QQEzL5xTVFuzcvfDlmfNNfuXcNZmkoJWiW0kSqY0DoYcOjsXgfQg==",
+      "type": "package",
+      "path": "optivem.framework.core.all/1.0.23",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.1/Optivem.Framework.Core.All.dll",
+        "optivem.framework.core.all.1.0.23.nupkg.sha512",
+        "optivem.framework.core.all.nuspec"
+      ]
+    },
+    "Optivem.Framework.Core.Application/1.0.23": {
+      "sha512": "ml/7xXWubBoDfHETKt0eSiselY41Ihx+hUyzKyXbvBHxDLHBBvAR4J4cLTIt+kGJxn7XXVC7DZBfW106nXAcYQ==",
+      "type": "package",
+      "path": "optivem.framework.core.application/1.0.23",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.1/Optivem.Framework.Core.Application.dll",
+        "optivem.framework.core.application.1.0.23.nupkg.sha512",
+        "optivem.framework.core.application.nuspec"
+      ]
+    },
+    "Optivem.Framework.Core.Application.Interface/1.0.23": {
+      "sha512": "t1o/xeZtkvPXqcuVROnvU7ToCbEPEq3sVAcpgr56YS7IPpuYBy3/pQnRKGYAx62KR5RBpolKpA0PjeAFmVDrCQ==",
+      "type": "package",
+      "path": "optivem.framework.core.application.interface/1.0.23",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.1/Optivem.Framework.Core.Application.Interface.dll",
+        "optivem.framework.core.application.interface.1.0.23.nupkg.sha512",
+        "optivem.framework.core.application.interface.nuspec"
+      ]
+    },
+    "Optivem.Framework.Core.Common/1.0.23": {
+      "sha512": "d74Q91ZxWJpdyWqQf0WnmEX7Rcu+FWMyJlv/ZTPnq9PCNGnBPkXDyD2xQymnlmr8ymUyAvRNfX/OQ06WdtYVyg==",
+      "type": "package",
+      "path": "optivem.framework.core.common/1.0.23",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.1/Optivem.Framework.Core.Common.dll",
+        "optivem.framework.core.common.1.0.23.nupkg.sha512",
+        "optivem.framework.core.common.nuspec"
+      ]
+    },
+    "Optivem.Framework.Core.Domain/1.0.23": {
+      "sha512": "om7j5+k3Qxx5UdoVAp2Rnd0f5GoIQcBZzaIYAk90dYnDZLG5kwz0iOhHeLUUsB/0/A/RKgFD+SW+Z7vtkYy0pg==",
+      "type": "package",
+      "path": "optivem.framework.core.domain/1.0.23",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.1/Optivem.Framework.Core.Domain.dll",
+        "optivem.framework.core.domain.1.0.23.nupkg.sha512",
+        "optivem.framework.core.domain.nuspec"
+      ]
+    },
+    "Optivem.Framework.Infrastructure.FluentValidation/1.0.23": {
+      "sha512": "kaKk6tPpNIVxPoPG4r58rSp/bs9JYa2pi/YRfKqTe3JQge9OBXDeJ1fZiLdqMpQJHg1Si6r/Kk5VKwVNfWwmCw==",
+      "type": "package",
+      "path": "optivem.framework.infrastructure.fluentvalidation/1.0.23",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.1/Optivem.Framework.Infrastructure.FluentValidation.dll",
+        "optivem.framework.infrastructure.fluentvalidation.1.0.23.nupkg.sha512",
+        "optivem.framework.infrastructure.fluentvalidation.nuspec"
+      ]
+    },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "sha512": "HdSSp5MnJSsg08KMfZThpuLPJpPwE5hBXvHwoKWosyHHfe8Mh5WKT0ylEOf6yNzX6Ngjxe4Whkafh5q7Ymac4Q==",
       "type": "package",
@@ -14305,6 +14489,93 @@
         "system.collections.immutable.6.0.0.nupkg.sha512",
         "system.collections.immutable.nuspec",
         "useSharedDesignerContext.txt"
+      ]
+    },
+    "System.ComponentModel.Annotations/4.4.1": {
+      "sha512": "ToiYqSCioqhtspq2O/jYKtyTC/T0uwWHBTYlzCi6PRbSSHArN1IaRWeHffDamvms5sye5FDUWCfNZgubQpNRsA==",
+      "type": "package",
+      "path": "system.componentmodel.annotations/4.4.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/net461/System.ComponentModel.Annotations.dll",
+        "lib/netcore50/System.ComponentModel.Annotations.dll",
+        "lib/netcoreapp2.0/_._",
+        "lib/netstandard1.4/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.0/System.ComponentModel.Annotations.dll",
+        "lib/portable-net45+win8/_._",
+        "lib/win8/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/net461/System.ComponentModel.Annotations.dll",
+        "ref/net461/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/System.ComponentModel.Annotations.dll",
+        "ref/netcore50/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/de/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/es/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/fr/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/it/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ja/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ko/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ru/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netcoreapp2.0/_._",
+        "ref/netstandard1.1/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.1/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.3/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.4/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard2.0/System.ComponentModel.Annotations.dll",
+        "ref/netstandard2.0/System.ComponentModel.Annotations.xml",
+        "ref/portable-net45+win8/_._",
+        "ref/win8/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.componentmodel.annotations.4.4.1.nupkg.sha512",
+        "system.componentmodel.annotations.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Composition/1.0.31": {
@@ -17957,12 +18228,13 @@
       "Microsoft.AspNet.WebHelpers >= 3.3.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 6.0.21",
       "Microsoft.AspNetCore.Identity >= 2.2.0",
-      "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.21",
-      "Microsoft.AspNetCore.Identity.UI >= 6.0.21",
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.23",
+      "Microsoft.AspNetCore.Identity.UI >= 6.0.23",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.23",
       "Microsoft.EntityFrameworkCore.Sqlite >= 6.0.23",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.23",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.16"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.16",
+      "Optivem.Framework.Infrastructure.FluentValidation >= 1.0.23"
     ]
   },
   "packageFolders": {
@@ -18028,11 +18300,11 @@
           },
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
-            "version": "[6.0.21, )"
+            "version": "[6.0.23, )"
           },
           "Microsoft.AspNetCore.Identity.UI": {
             "target": "Package",
-            "version": "[6.0.21, )"
+            "version": "[6.0.23, )"
           },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
@@ -18051,6 +18323,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[6.0.16, )"
+          },
+          "Optivem.Framework.Infrastructure.FluentValidation": {
+            "target": "Package",
+            "version": "[1.0.23, )"
           }
         },
         "imports": [
