@@ -1,4 +1,5 @@
 ﻿using com.sun.xml.@internal.bind.v2.model.core;
+using Microsoft.EntityFrameworkCore;
 using ShopOnline.Data;
 using ShopOnline.Models;
 using ShopOnline.Models.DBObjects;
@@ -27,7 +28,12 @@ namespace ShopOnline.Repository
                 return categoryList;
   
         }
-
+        public List<Product> GetProductsByCategory(Guid categoryId)
+        {
+            return dbContext.Products
+                .Where(p => p.IdCategory == categoryId)
+                .ToList();
+        }
         public CategoryModel GetCategoryById(Guid id)
         {
             return MapDbObjectToModel(dbContext.Categories.FirstOrDefault(x => x.IdCategory == id));

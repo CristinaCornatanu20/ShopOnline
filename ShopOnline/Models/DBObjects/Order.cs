@@ -1,25 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShopOnline.Models.DBObjects
 {
     public partial class Order
     {
-        public Order()
-        {
-            OrderDetails = new HashSet<OrderDetail>();
-        }
+        [Key]
+        public Guid Id { get; set; }
+        public string Email { get; set; }
+        public string UserId { get; set; }
 
-        public Guid IdOrder { get; set; }
-        public string IdUser { get; set; } = null!;
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
-        public string? Address { get; set; }
-        public DateTime? OrderDate { get; set; }
-
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-        public virtual AspNetUser IdUserNavigation { get; set; }
-
+        [ForeignKey(nameof(UserId))]
+        public AspNetUser User { get; set; }
+        public List<OrderDetail> OrderDetails { get; set; }
 
     }
 }

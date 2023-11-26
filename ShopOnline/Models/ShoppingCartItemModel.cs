@@ -1,17 +1,15 @@
-﻿using ShopOnline.Models.DBObjects;
+﻿using java.awt.print;
+using ShopOnline.Models.DBObjects;
+using System.ComponentModel.DataAnnotations;
 
 namespace ShopOnline.Models
 {
     public class ShoppingCartItemModel
     {
-        public Guid Id { get; set; }
-        public Guid ProductId { get; set; }
-        public string UserId { get; set; }
-        public int Quantity { get; set; }
-        public decimal TotalPrice { get; set; }
-
-        // Alte informații relevante despre articolul din coș pot fi adăugate aici
-
-        public virtual Product Product { get; set; }
+        [Key]
+        public int Id { get; set; }
+        public Product? Product { get; set; }
+        public int Amount { get; set; }
+        public string? ShoppingCartId { get; set; }
     }
 }

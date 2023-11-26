@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ShopOnline.Data;
 using ShopOnline.Models;
 using ShopOnline.Models.DBObjects;
 using ShopOnline.Repository;
 using System.Diagnostics;
+using static java.util.Locale;
 
 namespace ShopOnline.Controllers
 {
@@ -13,12 +15,14 @@ namespace ShopOnline.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
         private readonly ProductRepository repository;
+        private readonly CategoryRepository _categoryRepository;
 
         public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
-            _context=context;
-            repository=new ProductRepository(context);
+            _context = context;
+            repository = new ProductRepository(context);
+            _categoryRepository = new CategoryRepository(context);
         }
 
         public IActionResult Index()
@@ -29,9 +33,25 @@ namespace ShopOnline.Controllers
             }
 
             var products = repository.GetAllProducts();
+            var categories = _categoryRepository.GetAllCategories();
+            ViewBag.Categories = new SelectList(categories, "IdCategory", "Name");
+
+
             return View(products);
         }
+        public IActionResult Categories()
+        {
+            var category = _categoryRepository.GetAllCategories();
+            return View( category);
+        }
+  
+        public IActionResult ProductsByCategory(Guid categoryId)
+        {
+            var cat = categoryId;
+            var products = repository.GetProductByIDCategory(cat);
 
+            return View(products);
+        }
         public IActionResult Privacy()
         {
             return View();

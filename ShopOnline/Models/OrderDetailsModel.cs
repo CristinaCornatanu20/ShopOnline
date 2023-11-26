@@ -1,19 +1,22 @@
 ﻿using ShopOnline.Models.DBObjects;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShopOnline.Models
 {
     public class OrderDetailsModel
     {
-        public Guid IdOrderDetails { get; set; }
-        public Guid IdOrder { get; set; }
-        public Guid IdProduct { get; set; }
-        public Guid IdTva { get; set; }
-        public decimal? PriceTva { get; set; }
-        public int? Quantity { get; set; }
-        public decimal? PriceTotal { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
+        public int Amount { get; set; }
+        public decimal Price { get; set; }
 
-        public virtual Order IdOrderNavigation { get; set; } = null!;
-        public virtual Product IdProductNavigation { get; set; } = null!;
-        public virtual Tva IdTvaNavigation { get; set; } = null!;
+        [ForeignKey("ProductId")]
+        public Guid ProductId { get; set; }
+        public Product Product { get; set; }
+        public int OrderId { get; set; }
+        [ForeignKey("OrderId")]
+        public Order Order { get; set; }
     }
 }
