@@ -11,30 +11,7 @@
 {
     <p>Your shopping cart is empty.</p>
 }
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.IdProductNavigation.Name</td>
-                    <td>@item.Quantity</td>
-                    <td>@item.PriceTva</td>
-                    <td>@item.PriceTotal</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+
 
 <a asp-action="AddToCart" class="btn btn-primary">Add more items</a>
 
