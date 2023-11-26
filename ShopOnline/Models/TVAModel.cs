@@ -9,7 +9,7 @@ namespace ShopOnline.Models
         public Guid IdTva { get; set; }
         [Display(Name = "Cota TVA")]
       
-        public decimal? Tval { get; set; }
+        public decimal Tval { get; set; }
         [ValidateNever]
         public Guid IdCategory { get; set; }
 

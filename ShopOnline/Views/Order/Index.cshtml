@@ -26,7 +26,7 @@
                 @Html.DisplayNameFor(model => model.OrderDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdUserNavigation)
+           @*     @Html.DisplayNameFor(model => model.IdUserNavigation)*@
             </th>
             <th></th>
         </tr>
@@ -47,7 +47,7 @@
                 @Html.DisplayFor(modelItem => item.OrderDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdUserNavigation.Id)
+              @*  @Html.DisplayFor(modelItem => item.IdUserNavigation.Id)*@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdOrder">Edit</a> |

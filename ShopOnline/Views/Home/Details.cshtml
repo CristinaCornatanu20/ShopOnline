@@ -43,5 +43,7 @@
     </dl>
 
     <a asp-action="Index" class="btn btn-primary" align="center">Back to Products List</a>
+  
+    <a asp-controller="ShoppingCartItem" asp-action="AddToCart" asp-route-id="@Model.IdProduct" class="btn btn-success mb-2">Add to cart</a>
 
 </div>

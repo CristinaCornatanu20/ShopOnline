@@ -99,6 +99,12 @@ namespace ShopOnline.Repository
             return dbOrder;
         }
 
-
+        public Order GetActiveOrder(string v)
+        {
+            
+                return dbContext.Orders
+                    .SingleOrDefault(o => o.IdUser == v );
+            
+        }
     }
 }

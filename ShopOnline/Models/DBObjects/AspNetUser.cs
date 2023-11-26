@@ -10,6 +10,7 @@ namespace ShopOnline.Models.DBObjects
             AspNetUserClaims = new HashSet<AspNetUserClaim>();
             AspNetUserLogins = new HashSet<AspNetUserLogin>();
             AspNetUserTokens = new HashSet<AspNetUserToken>();
+            ShoppingCartItems = new HashSet<ShoppingCartItem>();
             Roles = new HashSet<AspNetRole>();
         }
 
@@ -32,8 +33,8 @@ namespace ShopOnline.Models.DBObjects
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetUserToken> AspNetUserTokens { get; set; }
+        public virtual ICollection<ShoppingCartItem> ShoppingCartItems { get; set; }
 
         public virtual ICollection<AspNetRole> Roles { get; set; }
-        public object Orders { get; internal set; }
     }
 }

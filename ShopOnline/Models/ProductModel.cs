@@ -21,7 +21,7 @@ namespace ShopOnline.Models
     
     public Guid IdCategory { get; set; }
     [Required(ErrorMessage = "Please enter product price")]
-    public decimal? Price { get; set; }
+    public decimal Price { get; set; }
     [Display(Name = "Stock Quantity")]
     [Required(ErrorMessage = "Please enter product stock quantity")]
     public int? StockQuantity { get; set; }
