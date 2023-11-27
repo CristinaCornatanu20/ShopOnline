@@ -47,6 +47,15 @@ namespace ShopOnline.Repository
             }
             await _context.SaveChangesAsync();
         }
+        public List<Order> GetAllOrders()
+        {
+            // Întoarce toate comenzile din baza de date
+            return _context.Orders.ToList();
+        }
+        public List <OrderDetail> GetAllOrdersDetail()
+        {
+            return _context.OrderDetails.ToList();
+        }
     }
 }
 

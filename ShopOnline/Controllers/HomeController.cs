@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ShopOnline.Data;
+using ShopOnline.Data.ViewModels;
 using ShopOnline.Models;
 using ShopOnline.Models.DBObjects;
 using ShopOnline.Repository;
+using System.Collections.Generic;
 using System.Diagnostics;
 using static java.util.Locale;
 
@@ -16,13 +18,17 @@ namespace ShopOnline.Controllers
         private readonly ApplicationDbContext _context;
         private readonly Repository.ProductRepository repository;
         private readonly Repository.CategoryRepository _categoryRepository;
+        private readonly Repository.OrdersService _orderRepository;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger,
+            ApplicationDbContext context
+           )
         {
             _logger = logger;
             _context = context;
             repository = new ProductRepository(context);
             _categoryRepository = new CategoryRepository(context);
+            _orderRepository = new OrdersService(context);
         }
 
         public IActionResult Index()
@@ -90,6 +96,23 @@ namespace ShopOnline.Controllers
 
             
             return View("Details", products);
+        }
+
+
+        public async Task<IActionResult> UsersOrders()
+        {
+            // Obține datele comenzii și detalii comandă
+            List < Order> order = _orderRepository.GetAllOrders(); ; // Obține comanda
+            List<OrderDetail> orderDetails = _orderRepository.GetAllOrdersDetail(); // Obține detalii comandă
+
+            // Construiește modelul
+            var orderViewModel = new OrderViewModel
+            {
+                Order = order,
+                OrderDetails = orderDetails
+            };
+
+            return View(orderViewModel);
         }
 
     }
