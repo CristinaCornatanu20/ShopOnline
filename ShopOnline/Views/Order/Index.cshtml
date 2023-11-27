@@ -1,0 +1,48 @@
+﻿@model List<OrderModel>
+
+@{
+    ViewData["Title"] = "All orders";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>List of all your orders</h1>
+        </p>
+        <br />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td class="align-middle">@order.Id</td>
+                        <td class="align-middle">
+                            @foreach (var item in order.OrderDetails)
+                            {
+                                <div class="alert alert-info" role="alert">
+                                    <span class="badge bg-success">@item.Amount</span> [@item.Price.ToString("")] - @item.Product.Name
+                                    <br>
+                                </div>
+                            }
+                        </td>
+                        <td class="align-middle">
+                            @order.OrderDetails.Select(m => m.Product.Price * m.Amount).Sum().ToString("") Lei
+                        </td>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <td class="align-middle"> @order.User.UserName </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

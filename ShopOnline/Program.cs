@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ShopOnline.Data;
+using ShopOnline.Data.Cart;
 using ShopOnline.Models.DBObjects;
 using ShopOnline.Repository;
 using System.Configuration;
@@ -22,6 +23,11 @@ builder.Services.Configure<FormOptions>(options =>
 });
 builder.Services.AddLogging();
 builder.Services.AddSession();
+
+builder.Services.AddScoped<ProductRepository>();
+builder.Services.AddScoped<IOrdersService, OrdersService>();
+builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+
 //builder.Services.AddScoped<ShoppingCartItemRepository>();
 //builder.Services.AddSingleton<IConfiguration>(Configuration);
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount=true)

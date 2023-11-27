@@ -28,7 +28,7 @@ namespace ShopOnline.Data.Cart
                 return new ShoppingCart(context) { ShoppingCartId = cartId };
             }
 
-            public void AddItemToCart(ProductModel product)
+            public void AddItemToCart(Product product)
             {
                 var shoppingCarItem = _context.ShoppingCartItems.FirstOrDefault(n => n.Product.IdProduct == product.IdProduct && n.ShoppingCartId == ShoppingCartId);
                 if (shoppingCarItem == null)

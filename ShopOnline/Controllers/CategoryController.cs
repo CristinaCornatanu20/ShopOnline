@@ -16,9 +16,11 @@ namespace ShopOnline.Controllers
     {
         //private readonly ApplicationDbContext _context;
         private Repository.CategoryRepository _context;
-        public CategoryController(ApplicationDbContext context)
+        private Repository.ProductRepository _productRepository;
+        public CategoryController(ApplicationDbContext context, ProductRepository productRepository)
         {
             _context = new Repository.CategoryRepository(context);
+            _productRepository = productRepository;
         }
 
         // GET: Category
@@ -27,7 +29,7 @@ namespace ShopOnline.Controllers
               var category=_context.GetAllCategories();
                 return View("Index",category);
         }
-        
+       
         // GET: Category/Details/5
         public ActionResult Details(Guid id)
         {

@@ -14,8 +14,8 @@ namespace ShopOnline.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
-        private readonly ProductRepository repository;
-        private readonly CategoryRepository _categoryRepository;
+        private readonly Repository.ProductRepository repository;
+        private readonly Repository.CategoryRepository _categoryRepository;
 
         public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
@@ -39,6 +39,7 @@ namespace ShopOnline.Controllers
 
             return View(products);
         }
+        
         public IActionResult Categories()
         {
             var category = _categoryRepository.GetAllCategories();

@@ -41,7 +41,10 @@ namespace ShopOnline.Repository
         {
             return MapDbObjectToModel(dbContext.Products.FirstOrDefault(x => x.IdProduct == ID));
         }
-
+        public Product GetProductById1(Guid id)
+        {
+            return dbContext.Products.FirstOrDefault(y => y.IdProduct == id);
+        }
         public ProductModel GetProductByIDCategory(Guid ID)
         {
             return MapDbObjectToModel(dbContext.Products.FirstOrDefault(x => x.IdCategory == ID));

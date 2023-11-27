@@ -45,13 +45,11 @@
                         @*
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Categorii</a>
-                        </li>*@
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Categories">Categorii</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link text-dark" asp-area="" asp-controller="ShoppingCart" asp-action="Index">Cart</a>
-                        </li>
+                        </li>*@
+                        
 
                         <li>
 
@@ -62,6 +60,9 @@
 
 
                         </li>
+                    </ul>
+                    <ul class="navbar-nav" style="margin-right:2%">
+                        @await Component.InvokeAsync("ShoppingCartSummary")
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

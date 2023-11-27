@@ -8,7 +8,7 @@ namespace ShopOnline.Models.DBObjects
     {
         [Key]
         public int Id { get; set; }
-        public ProductModel? Product { get; set; }
+        public Product? Product { get; set; }
         public int Amount { get; set; }
         public string? ShoppingCartId { get; set; }
     }

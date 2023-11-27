@@ -6,6 +6,8 @@ using System.Net.Mail;
 using System.Net;
 using System.Security.Claims;
 using System.Text;
+using ShopOnline.Models.DBObjects;
+using ShopOnline.Data;
 
 namespace ShopOnline.Controllers
 {
@@ -14,12 +16,15 @@ namespace ShopOnline.Controllers
         private readonly ProductRepository _prodService;
         private readonly ShoppingCart _shoppingCart;
         private readonly IOrdersService _ordersService;
+        private readonly ApplicationDbContext _context;
 
-        public OrderController(ProductRepository prodService, ShoppingCart shoppingCart, IOrdersService ordersService)
+        public OrderController(ProductRepository prodService, ShoppingCart shoppingCart, 
+            IOrdersService ordersService, ApplicationDbContext dbContext)
         {
             _prodService = prodService;
             _shoppingCart = shoppingCart;
             _ordersService = ordersService;
+            _context = dbContext;
         }
 
         public IActionResult ShoppingCart()
@@ -33,50 +38,66 @@ namespace ShopOnline.Controllers
             };
             return View(response);
         }
-        public async Task<IActionResult> AddItemShoppingCart(Guid id)
+        public Task<IActionResult> AddItemShoppingCart(Guid id)
         {
-            var item = _prodService.GetProductById(id);
+            var item = _prodService.GetProductById1(id);
             if (item != null)
             {
                 _shoppingCart.AddItemToCart(item);
             }
-            return RedirectToAction(nameof(ShoppingCart));
+            return Task.FromResult<IActionResult>(RedirectToAction(nameof(ShoppingCart)));
         }
-        public async Task<IActionResult> RemoveItemShoppingCart(Guid id)
+        public Task<IActionResult> RemoveItemShoppingCart(Guid id)
         {
             var item =  _prodService.GetProductById(id);
             if (item != null)
             {
                 _shoppingCart.RemoveItemFromCart(item);
             }
-            return RedirectToAction(nameof(ShoppingCart));
+            return Task.FromResult<IActionResult>(RedirectToAction(nameof(ShoppingCart)));
         }
 
 
         public async Task<IActionResult> CompleteOrder()
         {
-            var items = _shoppingCart.GetShoppingCartItems();
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            string userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
+            string userEmail = User.Identity.Name;
 
-            await _ordersService.StoreOrderAsync(items, userId, userEmailAddress);
-            await _shoppingCart.ClearShoppingCartAsync();
-
-            string toAddress = userEmailAddress;
-            string subject = "Order Confimation!";
-
-            StringBuilder body = new StringBuilder();
-            body.AppendLine("\nThank you for ordering on our shop!");
-
-            foreach (var item in items)
+            var newOrder = new Order
             {
-                body.AppendLine($"- {item.Product.Name}");
+                Id = Guid.NewGuid(),
+                Email = userEmail, // Setează adresa de email a utilizatorului sau lasă câmpul gol, în funcție de necesități
+                UserId = userId,
+                
+            };
+
+            // Obține elementele din coș
+            var cartItems = _shoppingCart.GetShoppingCartItems();
+
+            // Adaugă detalii în comandă
+            foreach (var cartItem in cartItems)
+            {
+                var orderDetail = new OrderDetail
+                {
+                    Id = Guid.NewGuid(),
+                    Amount = cartItem.Amount,
+                    Price = cartItem.Product.Price*cartItem.Amount, // sau poți utiliza alt preț specific, depinde de logica ta
+                    ProductId = cartItem.Product.IdProduct, // sau cartItem.ProductId, depinde de structura ShoppingCartItem
+                   
+                    OrderId = newOrder.Id // Setează ID-ul comenzii pentru detaliul comenzii
+                };
+
+                _context.OrderDetails.Add(orderDetail);
             }
 
-            
+            // Adaugă comanda în baza de date
+            _context.Orders.Add(newOrder);
+            await _context.SaveChangesAsync();
 
-            SendEmail(toAddress, subject, body.ToString());
+            // Eliberează coșul de cumpărături
+            await _shoppingCart.ClearShoppingCartAsync();
 
+            // Redirectează către o pagină de confirmare a comenzii
             return View("OrderCompleted");
         }
 
@@ -89,26 +110,6 @@ namespace ShopOnline.Controllers
 
             return View(orders);
         }
-        public void SendEmail(string toAddress, string subject, string body)
-        {
-
-            // Set the SMTP server details
-            SmtpClient client = new SmtpClient();
-            client.Host = "smtp.gmail.com";
-            client.Port = 587;
-            client.EnableSsl = true;
-            client.UseDefaultCredentials = false;
-            client.Credentials = new NetworkCredential("cornateanucristina@gmail.com", "jqmifsfdshkupzlu");
-
-            // Create a message to send
-            MailMessage message = new MailMessage();
-            message.From = new MailAddress("cornateanucristina@gmail.com");
-            message.To.Add(toAddress);
-            message.Subject = subject;
-            message.Body = body;
-
-            // Send the message
-            client.Send(message);
-        }
+        
     }
 }

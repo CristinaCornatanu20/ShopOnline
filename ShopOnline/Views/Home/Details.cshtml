@@ -43,7 +43,8 @@
     </dl>
 
     <a asp-action="Index" class="btn btn-primary" align="center">Back to Products List</a>
-  
-    <a asp-controller="ShoppingCartItem" asp-action="AddToCart" asp-route-id="@Model.IdProduct" class="btn btn-success mb-2">Add to cart</a>
 
+    <div class="col-6 text-end">
+        <a href="@Url.Action("AddItemShoppingCart", "Order", new { id = @Model.IdProduct })" class="btn btn-success text-white"><i class="bi bi-cart-plus"></i> Price @Model.Price.ToString() EUR</a>
+    </div>
 </div>
