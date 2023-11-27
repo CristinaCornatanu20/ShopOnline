@@ -66,7 +66,7 @@ namespace ShopOnline.Controllers
         public IActionResult AdminIndex()
         {
             var products = repository.GetAllProducts();
-            return View("AdminIndex", products);
+            return View( products);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

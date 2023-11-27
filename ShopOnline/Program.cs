@@ -28,8 +28,7 @@ builder.Services.AddScoped<ProductRepository>();
 builder.Services.AddScoped<IOrdersService, OrdersService>();
 builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
 
-//builder.Services.AddScoped<ShoppingCartItemRepository>();
-//builder.Services.AddSingleton<IConfiguration>(Configuration);
+
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount=true)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();

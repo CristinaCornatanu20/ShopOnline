@@ -58,7 +58,6 @@ namespace ShopOnline.Repository
             {
                 var categoryModel = new Category
                 {
-                    // Aici copiezi proprietățile corespunzătoare din categoria din baza de date în categoria model
                     IdCategory = categoryFromDb.IdCategory,
                     Name = categoryFromDb.Name,
                 };

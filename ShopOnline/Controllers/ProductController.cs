@@ -107,7 +107,7 @@ namespace ShopOnline.Controllers
                          await image.CopyToAsync(stream);
                      }
 
-                     model.Image = "/Products/" + image.FileName; // Salvarea căii imaginii în model
+                     model.Image = "/Products/" + image.FileName; 
                  }
 
                      _context.InsertProduct(model);
@@ -117,58 +117,14 @@ namespace ShopOnline.Controllers
                  catch 
                  {
                      ModelState.AddModelError(string.Empty, "Error saving the product. Please try again.");
-                     return View("Create"); // Reafisează pagina de creare cu erorile adăugate în modelState
+                     return View("Create"); 
 
                   }
 
              return RedirectToAction(nameof(Index));
          }
-        /* Metoda Create fara repository
         
-        public async Task<IActionResult> Create([Bind("IdProduct,Name,Description,IdCategory,Price,StockQuantity,Image")] Product model, IFormFile image)
-        {
-            try
-            {
-                
-                model.IdProduct = Guid.NewGuid();
-                if (image != null && image.Length > 0)
-                    {
-                        var imagePath = Path.Combine(_hostingEnvironment.WebRootPath, "Products", image.FileName);
-
-                        using (var stream = new FileStream(imagePath, FileMode.Create))
-                        {
-                            await image.CopyToAsync(stream);
-                        }
-
-                        model.Image = "/Products/" + image.FileName; // Salvarea căii imaginii în model
-                    }
-
-                    if (model != null)
-                    {
-                       
-                        context.Add(model);
-                    await context.SaveChangesAsync();
-
-                    return RedirectToAction(nameof(Index));
-                    }
-                    else
-                    {
-                        ModelState.AddModelError(string.Empty, "Modelul nu a putut fi completat corespunzător.");
-                        return View("Create",model);
-                    }
-               
-            }
-            catch (Exception ex)
-            {
-                // Logați excepția
-                _logger.LogError(ex, "Eroare în metoda Create a controllerului Product.");
-                ModelState.AddModelError(string.Empty, "Eroare la salvarea produsului. Vă rugăm să încercați din nou.");
-                return View("Create"); // Reafișează pagina de creare cu erorile adăugate în modelState
-            }
-        }
-
-        */
-
+        
         // GET: Product/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {

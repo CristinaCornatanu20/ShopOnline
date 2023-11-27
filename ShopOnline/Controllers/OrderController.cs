@@ -8,9 +8,11 @@ using System.Security.Claims;
 using System.Text;
 using ShopOnline.Models.DBObjects;
 using ShopOnline.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ShopOnline.Controllers
 {
+    
     public class OrderController : Controller
     {
         private readonly ProductRepository _prodService;
@@ -40,6 +42,7 @@ namespace ShopOnline.Controllers
         }
         public Task<IActionResult> AddItemShoppingCart(Guid id)
         {
+           
             var item = _prodService.GetProductById1(id);
             if (item != null)
             {
@@ -66,7 +69,7 @@ namespace ShopOnline.Controllers
             var newOrder = new Order
             {
                 Id = Guid.NewGuid(),
-                Email = userEmail, // Setează adresa de email a utilizatorului sau lasă câmpul gol, în funcție de necesități
+                Email = userEmail, 
                 UserId = userId,
                 
             };
@@ -81,10 +84,10 @@ namespace ShopOnline.Controllers
                 {
                     Id = Guid.NewGuid(),
                     Amount = cartItem.Amount,
-                    Price = cartItem.Product.Price*cartItem.Amount, // sau poți utiliza alt preț specific, depinde de logica ta
-                    ProductId = cartItem.Product.IdProduct, // sau cartItem.ProductId, depinde de structura ShoppingCartItem
+                    Price = cartItem.Product.Price*cartItem.Amount, 
+                    ProductId = cartItem.Product.IdProduct, 
                    
-                    OrderId = newOrder.Id // Setează ID-ul comenzii pentru detaliul comenzii
+                    OrderId = newOrder.Id 
                 };
 
                 _context.OrderDetails.Add(orderDetail);
