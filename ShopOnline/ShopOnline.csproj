@@ -21,12 +21,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+    <PackageReference Include="NPOI" Version="2.6.2" />
     <PackageReference Include="Optivem.Framework.Infrastructure.FluentValidation" Version="1.0.23" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\Cart\" />
-    <Folder Include="Views\Shared\Components\ShoppingCartSummary\" />
   </ItemGroup>
 
 </Project>
